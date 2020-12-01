@@ -72,8 +72,8 @@
       handleFullScreen() {
         Util.toggleFullScreen();
       },
-      handleLogout() {
-        this.$router.push('/login');
+      async handleLogout() {
+        await this.$auth.logout()
       }
     }
   };

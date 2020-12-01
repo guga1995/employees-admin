@@ -1,5 +1,10 @@
 export const state = () => ({
-  drawer: true
+  drawer: true,
+  snackbar: {
+    show: false,
+    text: '',
+    color: '',
+  }
 })
 
 export const mutations = {
@@ -8,5 +13,12 @@ export const mutations = {
   },
   drawer(state, val) {
     state.drawer = val
+  },
+  showSnackbar(state, payload) {
+    state.snackbar = {
+      show: true,
+      text: payload.text,
+      color: payload.color,
+    }
   }
 }

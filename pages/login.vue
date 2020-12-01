@@ -7,8 +7,8 @@
             <v-card class="elevation-1 pa-3">
               <v-card-text>
                 <v-form>
-                  <v-text-field append-icon="person" name="login" label="Login" type="text"
-                                v-model="model.username"></v-text-field>
+                  <v-text-field append-icon="person" name="Email" label="Email" type="text"
+                                v-model="model.email"></v-text-field>
                   <v-text-field append-icon="lock" name="password" label="Password" id="password" type="password"
                                 v-model="model.password"></v-text-field>
                 </v-form>
@@ -31,17 +31,23 @@
     data: () => ({
       loading: false,
       model: {
-        username: 'admin@example.com',
+        email: 'admin@admin.com',
         password: 'password'
       }
     }),
 
     methods: {
-      login() {
+      async login() {
         this.loading = true;
-        setTimeout(() => {
-          this.$router.push('/dashboard');
-        }, 1000);
+        try {
+          await this.$auth.loginWith('local', {
+            data: this.model
+          })
+        } catch (e) {
+
+        } finally {
+          this.loading = false;
+        }
       }
     }
 

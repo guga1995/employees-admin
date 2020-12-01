@@ -59,7 +59,10 @@
   import PageHeader from '@/components/PageHeader'
   import ThemeSettings from '@/components/ThemeSettings'
 
+  import {mapState} from 'vuex'
+
   export default {
+    middleware: 'auth',
     components: {
       AppDrawer,
       AppToolbar,
@@ -70,12 +73,13 @@
     data: () => ({
       expanded: true,
       rightDrawer: false,
-      snackbar: {
-        show: false,
-        text: '',
-        color: '',
-      }
     }),
+
+    computed: {
+      ...mapState([
+        'snackbar'
+      ])
+    },
 
     methods: {
       openThemeSettings() {
